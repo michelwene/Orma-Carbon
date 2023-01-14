@@ -11,11 +11,14 @@ interface CardProps {
 }
 
 export function Card({ data }: CardProps) {
-  const { handleFavoriteParlamentarian } = useFavorite();
+  const { handleFavoriteParlamentarian, favorites } = useFavorite();
 
   function onClickFavorite() {
     handleFavoriteParlamentarian(data);
   }
+
+  const isFavorited = favorites.some((item) => item.id === data.id);
+
   return (
     <S.CardContainer>
       <S.CardLogo src={data.urlFoto} />
@@ -57,8 +60,8 @@ export function Card({ data }: CardProps) {
               variant="outlined"
               onClick={() => onClickFavorite()}
             >
-              Favoritar
-              <S.Icon />
+              {isFavorited ? "Desfavoritar" : "Favoritar"}
+              {!isFavorited && <S.Icon />}
             </Button>
           </Box>
         </Box>

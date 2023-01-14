@@ -2,6 +2,7 @@ import { Box } from "@components/Box";
 import { Card } from "@components/Card";
 import { Container } from "@components/Container";
 import { EmptyMessage } from "@components/EmptyMessage";
+import { useFavorite } from "../../context/FavoritesContext";
 import * as S from "./styles";
 
 interface ContentProps {
@@ -19,6 +20,8 @@ interface ContentProps {
 }
 
 export function Content({ data }: ContentProps) {
+  const { favorites } = useFavorite();
+
   return (
     <Container maxWidth="md">
       <Box
@@ -30,7 +33,13 @@ export function Content({ data }: ContentProps) {
       >
         <S.WrapperCards>
           {data && data.length > 0 ? (
-            data.map((item) => <Card key={item.id} data={item} />)
+            data.map((item) => {
+              const isFavorite = favorites.find((favorited) => {
+                return favorited.id === item.id;
+              });
+              if (isFavorite) return;
+              return <Card key={item.id} data={item} />;
+            })
           ) : (
             <EmptyMessage text="Não foi encontrado nenhum deputado" />
           )}

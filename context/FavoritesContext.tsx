@@ -36,7 +36,6 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
     favorites,
     handleFavoriteParlamentarian,
   };
-  console.log(favorites);
   return (
     <FavoritesContext.Provider value={value}>
       {children}

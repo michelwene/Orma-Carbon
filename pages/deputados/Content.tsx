@@ -3,6 +3,7 @@ import { Card } from "@components/Card";
 import { Container } from "@components/Container";
 import { EmptyMessage } from "@components/EmptyMessage";
 import { IDeputados } from "@pages/deputados/types";
+import { useFavorite } from "../../context/FavoritesContext";
 import * as S from "./styles";
 
 interface HomeProps {
@@ -12,6 +13,7 @@ interface HomeProps {
 }
 
 export function Content({ data }: HomeProps) {
+  const { favorites } = useFavorite();
   return (
     <Container maxWidth="md">
       <Box
@@ -23,7 +25,13 @@ export function Content({ data }: HomeProps) {
       >
         <S.WrapperCards>
           {data && data.dados.length > 0 ? (
-            data.dados.map((item) => <Card key={item.id} data={item} />)
+            data.dados.map((item) => {
+              const isFavorite = favorites.find((favorited) => {
+                return favorited.id === item.id;
+              });
+              if (isFavorite) return;
+              return <Card key={item.id} data={item} />;
+            })
           ) : (
             <EmptyMessage text="Não foi encontrado nenhum deputado" />
           )}
