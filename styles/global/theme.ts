@@ -1,13 +1,15 @@
 const theme = {
   background: {
     primary: "#FFD836",
+    secondary: "#FAFAFA",
     shape: "#FAFAFA",
     card: "#FFFFFF",
     card2: "#F1F1F1",
   },
   text: {
-    primary: "#000000",
+    primary: "#0072E5",
     secondary: "#CCCCCC",
+    info: "#000000",
     error: "#FF0000",
   },
   size: {
