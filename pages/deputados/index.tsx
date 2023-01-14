@@ -1,7 +1,7 @@
 import Head from "next/head";
-import { Home } from "@components/Home";
-import { api } from "@services/api";
+import { apiCongress } from "@services/api";
 import { AppHomeProps, IDeputados } from "./types";
+import { Content } from "./Content";
 
 export default function AppHome({ data }: AppHomeProps) {
   console.log(data);
@@ -11,7 +11,7 @@ export default function AppHome({ data }: AppHomeProps) {
         <title>Deputados</title>
       </Head>
 
-      <Home data={[]} />
+      <Content data={[]} />
     </>
   );
 }

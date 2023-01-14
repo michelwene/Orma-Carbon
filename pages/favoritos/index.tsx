@@ -17,7 +17,7 @@ export default function Favorites() {
           justifyContent="center"
           columnGap="1rem"
         >
-          <Card />
+          {/* <Card /> */}
         </Box>
       </Container>
     </>

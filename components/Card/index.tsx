@@ -3,9 +3,10 @@ import Button from "@components/Button";
 import { Text } from "@components/Text/styles";
 import { IDeputados } from "@pages/deputados/types";
 import * as S from "./styles";
+import { Card } from "./types";
 
 interface CardProps {
-  data: IDeputados;
+  data: Card;
 }
 
 export function Card({ data }: CardProps) {
