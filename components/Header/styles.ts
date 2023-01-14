@@ -26,19 +26,3 @@ export const WrapperOptions = styled.div`
   justify-content: center;
   column-gap: 1rem;
 `;
-
-export const WrapperText = styled.p`
-  font-size: ${(props) => props.theme.size.regular};
-  font-family: ${(props) => props.theme.fonts.primary};
-  color: ${(props) => props.theme.text.info};
-  font-weight: 500;
-
-  transition: all 1s ease;
-
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-
-    filter: brightness(0.8);
-  }
-`;

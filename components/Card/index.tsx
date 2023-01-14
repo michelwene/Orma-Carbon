@@ -24,15 +24,7 @@ export function Card() {
           </Box>
           <Box margin="1rem 0 0 0">
             <Text variant="caption">Detalhes:</Text>
-            <Text
-              variant="subtitle"
-              style={{
-                color: "#0000EE",
-                cursor: "pointer",
-              }}
-            >
-              Ver mais...
-            </Text>
+            <S.MoreInfo>Ver mais...</S.MoreInfo>
           </Box>
         </Box>
       </S.CardInfo>

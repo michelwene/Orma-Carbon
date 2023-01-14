@@ -1,3 +1,6 @@
+import { Box } from "@components/Box";
+import { Card } from "@components/Card";
+import { Container } from "@components/Container";
 import Head from "next/head";
 
 export default function Favorites() {
@@ -6,9 +9,17 @@ export default function Favorites() {
       <Head>
         <title>Favoritos</title>
       </Head>
-      <div>
-        <h1>Favorites</h1>
-      </div>
+      <Container maxWidth="md">
+        <Box
+          margin="2rem 0 0 0"
+          displayFlex
+          alignItems="center"
+          justifyContent="center"
+          columnGap="1rem"
+        >
+          <Card />
+        </Box>
+      </Container>
     </>
   );
 }

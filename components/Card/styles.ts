@@ -29,3 +29,16 @@ export const CardInfo = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const MoreInfo = styled.span`
+  font-size: 14px;
+  color: ${({ theme }) => theme.text.primary};
+
+  transition: filter 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    filter: brightness(0.8);
+  }
+`;

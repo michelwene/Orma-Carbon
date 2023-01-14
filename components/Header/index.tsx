@@ -4,6 +4,7 @@ import { Logo } from "@components/Logo";
 import { Title } from "@components/Title";
 import * as S from "./styles";
 import { useRouter } from "next/router";
+import { ActiveLink } from "@components/ActiveLink";
 
 export function Header() {
   const router = useRouter();
@@ -15,15 +16,9 @@ export function Header() {
             <Logo />
             <Box justifySelf="center" fullWidth>
               <S.WrapperOptions>
-                <S.WrapperText onClick={() => router.push("/")}>
-                  Deputados
-                </S.WrapperText>
-                <S.WrapperText onClick={() => router.push("/senadores")}>
-                  Senadores
-                </S.WrapperText>
-                <S.WrapperText onClick={() => router.push("/favoritos")}>
-                  Favoritos
-                </S.WrapperText>
+                <ActiveLink href="/">Deputados</ActiveLink>
+                <ActiveLink href="/senadores">Senadores</ActiveLink>
+                <ActiveLink href="/favoritos">Favoritos</ActiveLink>
               </S.WrapperOptions>
             </Box>
           </Box>

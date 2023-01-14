@@ -18,7 +18,7 @@
       "@assets/*": ["./assets/*"],
       "@hooks/*": ["./hooks/*"],
       "@shared/*": ["./shared/*"],
-      "@services/*": ["./services/*"],
+      "@services/*": ["./service/*"],
       "@styles/*": ["./styles/*"],
       "@contexts/*": ["./contexts/*"],
       "@components/*": ["./components/*"],
