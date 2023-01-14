@@ -1,9 +1,6 @@
 import { Box } from "@components/Box";
 import { Container } from "@components/Container";
-
-interface MainProps {
-  children: React.ReactNode;
-}
+import { api } from "../../service/api";
 
 export function Home() {
   return (
