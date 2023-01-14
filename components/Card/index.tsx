@@ -2,14 +2,20 @@ import { Box } from "@components/Box";
 import Button from "@components/Button";
 import { Text } from "@components/Text/styles";
 import { IDeputados } from "@pages/deputados/types";
+import { useFavorite } from "../../context/FavoritesContext";
+import { Parliamentarian } from "../../types/Parlamentarian";
 import * as S from "./styles";
-import { Card } from "./types";
 
 interface CardProps {
-  data: Card;
+  data: Parliamentarian;
 }
 
 export function Card({ data }: CardProps) {
+  const { handleFavoriteParlamentarian } = useFavorite();
+
+  function onClickFavorite() {
+    handleFavoriteParlamentarian(data);
+  }
   return (
     <S.CardContainer>
       <S.CardLogo src={data.urlFoto} />
@@ -46,7 +52,11 @@ export function Card({ data }: CardProps) {
             <S.MoreInfo>Ver mais...</S.MoreInfo>
           </Box>
           <Box margin="1rem 0 0 0">
-            <Button type="button" variant="outlined">
+            <Button
+              type="button"
+              variant="outlined"
+              onClick={() => onClickFavorite()}
+            >
               Favoritar
               <S.Icon />
             </Button>

@@ -1,4 +1,4 @@
-export type Card = {
+export type Parliamentarian = {
   email: string | null;
   id: number | string;
   idLegislatura: number | string;

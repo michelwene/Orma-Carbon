@@ -19,7 +19,6 @@ export default function Senators({ data }: SenatorProps) {
       uri: item.IdentificacaoParlamentar.UrlPaginaParlamentar,
       urlFoto: item.IdentificacaoParlamentar.UrlFotoParlamentar,
     }));
-  console.log(dataFormatted);
   return (
     <>
       <Head>

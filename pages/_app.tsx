@@ -4,6 +4,7 @@ import theme from "@styles/global/theme";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
+import { FavoritesProvider } from "../context/FavoritesContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -31,9 +32,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <FavoritesProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </FavoritesProvider>
       </ThemeProvider>
     </>
   );

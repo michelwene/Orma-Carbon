@@ -2,16 +2,23 @@ import { Box } from "@components/Box";
 import { Card } from "@components/Card";
 import { Container } from "@components/Container";
 import { EmptyMessage } from "@components/EmptyMessage";
-import { IDeputados } from "@pages/deputados/types";
 import * as S from "./styles";
 
-interface HomeProps {
+interface ContentProps {
   data: {
-    dados: IDeputados[];
-  };
+    email: string | null;
+    id: number | string;
+    idLegislatura: number | string;
+    nome: string;
+    siglaPartido: string;
+    siglaUf: string;
+    uri?: string;
+    uriPartido?: string;
+    urlFoto: string;
+  }[];
 }
 
-export function Content({ data }: HomeProps) {
+export function Content({ data }: ContentProps) {
   return (
     <Container maxWidth="md">
       <Box
@@ -22,10 +29,10 @@ export function Content({ data }: HomeProps) {
         columnGap="1rem"
       >
         <S.WrapperCards>
-          {data && data.dados.length > 0 ? (
-            data.dados.map((item) => <Card key={item.id} data={item} />)
+          {data && data.length > 0 ? (
+            data.map((item) => <Card key={item.id} data={item} />)
           ) : (
-            <EmptyMessage text="Não foi encontrado nenhum deputado" />
+            <EmptyMessage text="Não há nenhum deputado favoritado" />
           )}
         </S.WrapperCards>
       </Box>
