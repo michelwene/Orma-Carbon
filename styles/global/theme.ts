@@ -2,7 +2,7 @@ const theme = {
   background: {
     primary: "#FFD836",
     secondary: "#FAFAFA",
-    shape: "#FAFAFA",
+    shape: "#F1F1F1",
     card: "#FFFFFF",
     card2: "#F1F1F1",
   },

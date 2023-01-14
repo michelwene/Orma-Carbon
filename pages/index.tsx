@@ -3,6 +3,7 @@ import { Inter } from "@next/font/google";
 import { GlobalStyle } from "@styles/global";
 import { ThemeProvider } from "styled-components";
 import theme from "@styles/global/theme";
+import { Layout } from "@components/Layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,9 +35,7 @@ export default function Home() {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <div>
-          <h1>Olá mundo</h1>
-        </div>
+        <Layout />
       </ThemeProvider>
     </>
   );

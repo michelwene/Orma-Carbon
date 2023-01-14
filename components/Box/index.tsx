@@ -8,7 +8,9 @@ interface BoxProps {
   rowGap?: string;
   flexDirection?: "row" | "column";
   justifyContent?: "center" | "flex-start" | "flex-end" | "space-between";
+  justifySelf?: "center" | "flex-start" | "flex-end";
   alignItems?: "center" | "flex-start" | "flex-end";
+  alignSelf?: "center" | "flex-start" | "flex-end";
   fullWidth?: boolean;
   fullHeight?: boolean;
   width?: string;
@@ -25,6 +27,7 @@ export function Box({
   displayFlex,
   flexDirection,
   justifyContent,
+  justifySelf,
   columnGap,
   rowGap,
   alignItems,
@@ -37,6 +40,7 @@ export function Box({
   backgroundColor,
   borderRadius,
   position,
+  alignSelf,
 }: BoxProps) {
   return (
     <S.Container
@@ -56,6 +60,8 @@ export function Box({
         columnGap,
         rowGap,
         position,
+        alignSelf,
+        justifySelf,
       }}
     >
       {children}

@@ -23,7 +23,7 @@
       "@contexts/*": ["./contexts/*"],
       "@components/*": ["./components/*"],
       "@pages/*": ["./pages/*"],
-      "@types/@*": ["./@types/*"],
+      "@types/*": ["./@types/*"],
       "@layout/*": ["./components/layout/*"]
     },
     "incremental": true

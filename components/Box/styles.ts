@@ -4,7 +4,9 @@ interface BoxProps {
   displayFlex?: boolean;
   flexDirection?: "row" | "column";
   justifyContent?: "center" | "flex-start" | "flex-end" | "space-between";
+  justifySelf?: "center" | "flex-start" | "flex-end";
   alignItems?: "center" | "flex-start" | "flex-end";
+  alignSelf?: "center" | "flex-start" | "flex-end";
   columnGap?: string;
   rowGap?: string;
   fullWidth?: boolean;
@@ -22,7 +24,9 @@ export const Container = styled.div<BoxProps>`
   display: ${(props) => (props.displayFlex ? "flex" : "block")};
   flex-direction: ${(props) => props.flexDirection};
   justify-content: ${(props) => props.justifyContent};
+  justify-self: ${(props) => props.justifySelf};
   align-items: ${(props) => props.alignItems};
+  align-self: ${(props) => props.alignSelf};
   width: ${(props) => (props.fullWidth ? "100%" : props.width)};
   height: ${(props) => (props.fullHeight ? "100%" : props.height)};
   padding: ${(props) => props.padding};
