@@ -30,12 +30,14 @@ export default function AppHome({ data }: AppHomeProps) {
   );
 }
 
-export async function getServerSideProps() {
-  const {
-    data,
-  }: {
-    data: IDeputados[];
-  } = await api.get("/deputados");
-  // Pass data to the page via props
-  return { props: { data } };
-}
+// export async function getServerSideProps() {
+//   const {
+//     data: { dados },
+//   }: {
+//     data: {
+//       dados: IDeputados[];
+//     };
+//   } = await api.get("/deputados");
+//   // Pass data to the page via props
+//   return { props: { dados } };
+// }

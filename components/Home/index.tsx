@@ -1,4 +1,5 @@
 import { Box } from "@components/Box";
+import { Card } from "@components/Card";
 import { Container } from "@components/Container";
 import { api } from "../../service/api";
 
@@ -12,7 +13,7 @@ export function Home() {
         justifyContent="center"
         columnGap="1rem"
       >
-        123
+        <Card />
       </Box>
     </Container>
   );
