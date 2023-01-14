@@ -32,7 +32,7 @@ export function Content({ data }: ContentProps) {
           {data && data.length > 0 ? (
             data.map((item) => <Card key={item.id} data={item} />)
           ) : (
-            <EmptyMessage text="Não há nenhum deputado favoritado" />
+            <EmptyMessage text="Não há nenhum parlamentar favoritado" />
           )}
         </S.WrapperCards>
       </Box>
