@@ -1,10 +1,15 @@
 import { Header } from "@components/Header";
 import * as S from "./styles";
 
-export function Layout() {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export function Layout({ children }: LayoutProps) {
   return (
     <S.Container>
       <Header />
+      {children}
     </S.Container>
   );
 }

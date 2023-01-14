@@ -15,3 +15,7 @@ export const Container = styled.header`
   top: 0;
   left: 0;
 `;
+
+export const Toolbar = styled.div`
+  height: 70px;
+`;

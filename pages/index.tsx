@@ -4,6 +4,7 @@ import { GlobalStyle } from "@styles/global";
 import { ThemeProvider } from "styled-components";
 import theme from "@styles/global/theme";
 import { Layout } from "@components/Layout";
+import { App } from "@components/App";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +36,9 @@ export default function Home() {
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <Layout />
+        <Layout>
+          <App />
+        </Layout>
       </ThemeProvider>
     </>
   );

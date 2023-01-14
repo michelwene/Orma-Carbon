@@ -6,15 +6,18 @@ import * as S from "./styles";
 
 export function Header() {
   return (
-    <S.Container>
-      <Container maxWidth="md">
-        <Box displayFlex alignItems="center">
-          <Logo />
-          <Box justifySelf="center" fullWidth>
-            <Title title="Lista de deputados e senadores" />
+    <>
+      <S.Container>
+        <Container maxWidth="md">
+          <Box displayFlex alignItems="center">
+            <Logo />
+            <Box justifySelf="center" fullWidth>
+              <Title title="Lista de deputados e senadores" />
+            </Box>
           </Box>
-        </Box>
-      </Container>
-    </S.Container>
+        </Container>
+      </S.Container>
+      <S.Toolbar />
+    </>
   );
 }

@@ -16,7 +16,7 @@ interface ButtonProps {
 const buttonBase: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   {
     children,
-    color = "primary",
+    color,
     disabled,
     fullWidth,
     loading,

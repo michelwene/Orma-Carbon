@@ -24,18 +24,30 @@ export const Button = styled.button<ButtonProps>`
   min-width: ${({ width }) => width};
 
   color: ${({ theme, color, variant }) => {
-    if (color === "primary" || variant === "contained") {
+    if (!color && variant === "outlined") {
+      return theme.text.primary;
+    }
+    if (variant === "contained") {
+      return theme.text.info;
+    }
+    if (color === "secondary") {
+      return theme.text.secondary;
+    }
+    if (color === "primary") {
       return theme.text.primary;
     }
 
-    return theme.text.secondary;
+    return theme.text.info;
   }};
   background-color: ${({ theme, color, variant }) => {
-    if (color === "primary" || variant === "contained") {
+    if (variant === "outlined") {
+      return theme.background.secondary;
+    }
+    if (variant === "contained") {
       return theme.background.primary;
     }
 
-    return theme.background.secondary;
+    return theme.background.primary;
   }};
 
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
