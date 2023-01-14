@@ -1,8 +1,14 @@
 import { Box } from "@components/Box";
 import { Card } from "@components/Card";
 import { Container } from "@components/Container";
+import { IDeputados } from "@pages/deputados/types";
+import * as S from "./styles";
 
-export function Home() {
+interface HomeProps {
+  data: IDeputados[];
+}
+
+export function Home({ data }: HomeProps) {
   return (
     <Container maxWidth="md">
       <Box
@@ -12,7 +18,9 @@ export function Home() {
         justifyContent="center"
         columnGap="1rem"
       >
-        <Card />
+        <S.WrapperCards>
+          {data && data.map((item) => <Card key={item.id} data={item} />)}
+        </S.WrapperCards>
       </Box>
     </Container>
   );

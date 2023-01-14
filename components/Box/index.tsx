@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./styles";
 
-interface BoxProps {
+interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   displayFlex?: boolean;
   columnGap?: string;
@@ -41,6 +41,7 @@ export function Box({
   borderRadius,
   position,
   alignSelf,
+  ...rest
 }: BoxProps) {
   return (
     <S.Container
@@ -63,6 +64,7 @@ export function Box({
         alignSelf,
         justifySelf,
       }}
+      {...rest}
     >
       {children}
     </S.Container>

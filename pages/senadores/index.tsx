@@ -17,7 +17,7 @@ export default function Senators() {
           justifyContent="center"
           columnGap="1rem"
         >
-          <Card />
+          123
         </Box>
       </Container>
     </>

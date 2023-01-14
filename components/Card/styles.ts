@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { AiOutlineStar } from "react-icons/ai";
 
 interface CardProps {
   src: string;
@@ -41,4 +42,10 @@ export const MoreInfo = styled.span`
     text-decoration: underline;
     filter: brightness(0.8);
   }
+`;
+
+export const Icon = styled(AiOutlineStar)`
+  color: ${({ theme }) => theme.background.primary};
+  margin-left: 1rem;
+  font-size: 1.5rem;
 `;
