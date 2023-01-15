@@ -18,6 +18,7 @@ export default function Senators({ data }: SenatorProps) {
       siglaUf: item.IdentificacaoParlamentar.UfParlamentar,
       uri: item.IdentificacaoParlamentar.UrlPaginaParlamentar,
       urlFoto: item.IdentificacaoParlamentar.UrlFotoParlamentar,
+      parlamentarianType: "Senador",
     }));
   return (
     <>

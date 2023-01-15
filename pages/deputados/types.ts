@@ -1,17 +1,7 @@
-export type IDeputados = {
-  email: string | null;
-  id: number;
-  idLegislatura: number;
-  nome: string;
-  siglaPartido: string;
-  siglaUf: string;
-  uri: string;
-  uriPartido: string;
-  urlFoto: string;
-};
+import { Parliamentarian } from "../../types/Parlamentarian";
 
 export interface AppHomeProps {
   data: {
-    dados: IDeputados[];
+    dados: Parliamentarian[];
   };
 }

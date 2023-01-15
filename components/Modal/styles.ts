@@ -1,18 +1,27 @@
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 
+interface imageProps {
+  src: string;
+}
+
+interface ModalProps {
+  isOpen: boolean;
+}
+
 export const Container = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 25%;
+  left: 25%;
   z-index: 10;
 
-  width: 100%;
-  height: 100vh;
+  width: auto;
+  height: auto;
 
-  display: flex;
   justify-content: center;
   align-items: center;
+
+  display: ${({ isOpen }: ModalProps) => (isOpen ? "flex" : "none")};
 `;
 
 export const Wrapper = styled.div`
@@ -35,6 +44,18 @@ export const ModalHeader = styled.div`
 export const ModalTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: ${({ theme }) => theme.fonts.primary};
+`;
+
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const ImagePreview = styled.div<imageProps>`
+  width: 200px;
+  height: 200px;
+  background: url(${(props) => props.src}) center / contain no-repeat;
 `;
 
 export const CloseButton = styled.button`
@@ -72,4 +93,6 @@ export const Backdrop = styled.div`
   background-color: rgb(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   z-index: 9;
+
+  display: ${({ isOpen }: ModalProps) => (isOpen ? "block" : "none")};
 `;

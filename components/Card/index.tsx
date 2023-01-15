@@ -2,7 +2,6 @@ import { Box } from "@components/Box";
 import Button from "@components/Button";
 import { Modal } from "@components/Modal";
 import { Text } from "@components/Text/styles";
-import { IDeputados } from "@pages/deputados/types";
 import { useState } from "react";
 import { useFavorite } from "../../context/FavoritesContext";
 import { Parliamentarian } from "../../types/Parlamentarian";
@@ -14,6 +13,9 @@ interface CardProps {
 
 export function Card({ data }: CardProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [parlamentarian, setParlamentarian] = useState<Parliamentarian | null>(
+    null
+  );
   const { handleFavoriteParlamentarian, favorites } = useFavorite();
 
   function onClickFavorite() {
@@ -21,6 +23,7 @@ export function Card({ data }: CardProps) {
   }
 
   function handleOpenModal() {
+    setParlamentarian(data);
     setIsOpenModal(true);
   }
 
@@ -79,7 +82,14 @@ export function Card({ data }: CardProps) {
           </Box>
         </S.CardInfo>
       </S.CardContainer>
-      {isOpenModal && <Modal onClose={() => onRequestCloseModal()} />}
+      {parlamentarian && (
+        <Modal
+          onClose={() => onRequestCloseModal()}
+          data={parlamentarian}
+          title="Detalhes do Parlamentar"
+          isOpen={isOpenModal}
+        />
+      )}
     </>
   );
 }

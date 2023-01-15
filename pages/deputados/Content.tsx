@@ -2,14 +2,12 @@ import { Box } from "@components/Box";
 import { Card } from "@components/Card";
 import { Container } from "@components/Container";
 import { EmptyMessage } from "@components/EmptyMessage";
-import { IDeputados } from "@pages/deputados/types";
 import { useFavorite } from "../../context/FavoritesContext";
+import { Parliamentarian } from "../../types/Parlamentarian";
 import * as S from "./styles";
 
 interface HomeProps {
-  data: {
-    dados: IDeputados[];
-  };
+  data: Parliamentarian[];
 }
 
 export function Content({ data }: HomeProps) {
@@ -24,8 +22,8 @@ export function Content({ data }: HomeProps) {
         columnGap="1rem"
       >
         <S.WrapperCards>
-          {data && data.dados.length > 0 ? (
-            data.dados.map((item) => {
+          {data && data.length > 0 ? (
+            data.map((item) => {
               const isFavorite = favorites.find((favorited) => {
                 return favorited.id === item.id;
               });
