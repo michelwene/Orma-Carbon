@@ -1,6 +1,6 @@
 import { Layout } from "@components/Layout";
 import { GlobalStyle } from "@styles/global";
-import theme from "@styles/global/theme";
+import { darkTheme, lightTheme } from "@styles/global/theme";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
@@ -10,6 +10,11 @@ import { useState, useEffect } from "react";
 import { Loader } from "@components/Loader";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    theme == "light" ? setTheme("dark") : setTheme("light");
+  };
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -53,10 +58,17 @@ export default function App({ Component, pageProps }: AppProps) {
           href="/favicon-16x16.png"
         />
       </Head>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyle />
         <FavoritesProvider>
-          <Layout>
+          <Layout
+            theme={theme}
+            toggleTheme={() =>
+              setTheme((prev) => {
+                return prev === "light" ? "dark" : "light";
+              })
+            }
+          >
             <Component {...pageProps} />
           </Layout>
         </FavoritesProvider>

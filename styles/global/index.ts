@@ -14,4 +14,5 @@ export const GlobalStyle = createGlobalStyle`
     a {
         text-decoration: none;
     }
+
 `;

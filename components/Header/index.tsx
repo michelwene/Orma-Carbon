@@ -3,8 +3,14 @@ import { Container } from "@components/Container";
 import { Logo } from "@components/Logo";
 import * as S from "./styles";
 import { ActiveLink } from "@components/ActiveLink";
+import { ButtonDarkTheme } from "@components/ButtonDarkTheme";
 
-export function Header() {
+interface HeaderProps {
+  theme: string;
+  toggleTheme: () => void;
+}
+
+export function Header({ theme, toggleTheme }: HeaderProps) {
   return (
     <>
       <S.Container>
@@ -18,6 +24,7 @@ export function Header() {
                 <ActiveLink href="/favoritos">Favoritos</ActiveLink>
               </S.WrapperOptions>
             </Box>
+            <ButtonDarkTheme theme={theme} onClick={toggleTheme} />
           </Box>
         </Container>
       </S.Container>
