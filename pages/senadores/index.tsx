@@ -2,6 +2,7 @@ import { Box } from "@components/Box";
 import { Card } from "@components/Card";
 import { Container } from "@components/Container";
 import { EmptyMessage } from "@components/EmptyMessage";
+import InputSearch from "@components/InputSearch";
 import { apiSenate } from "@services/api";
 import Head from "next/head";
 import { Content } from "./Content";
@@ -32,7 +33,15 @@ export default function Senators({ data }: SenatorProps) {
           alignItems="center"
           justifyContent="center"
           columnGap="1rem"
+          flexDirection="column"
         >
+          <InputSearch
+            name="search"
+            label="Pesquisar"
+            placeholder="Digite o nome do Senador"
+            type="text"
+            fullWidth
+          />
           <Content data={dataFormatted} />
         </Box>
       </Container>
