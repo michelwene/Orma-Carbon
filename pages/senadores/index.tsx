@@ -177,13 +177,7 @@ export default function Senators({ data }: SenatorProps) {
           columnGap="1rem"
           flexDirection="column"
         >
-          <Box
-            fullWidth
-            displayFlex
-            alignItems="flex-end"
-            justifyContent="space-between"
-            columnGap="1rem"
-          >
+          <S.WrapperFilters>
             <InputSearch
               name="search"
               label="Pesquisar"
@@ -199,7 +193,7 @@ export default function Senators({ data }: SenatorProps) {
               value={politicalParty}
               options={listAllPoliticalParties}
             />
-          </Box>
+          </S.WrapperFilters>
           <Content data={parlamentarians} />
           <Pagination
             page={page}

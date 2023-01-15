@@ -11,6 +11,7 @@ import InputSearch from "@components/InputSearch";
 import { Pagination } from "@components/Pagination";
 import { Loader } from "@components/Loader/styles";
 import { Select } from "@components/Select";
+import * as S from "./styles";
 
 export default function AppHome({ data }: AppHomeProps) {
   const [keyword, setKeyword] = useState("");
@@ -138,13 +139,7 @@ export default function AppHome({ data }: AppHomeProps) {
           columnGap="1rem"
           flexDirection="column"
         >
-          <Box
-            fullWidth
-            displayFlex
-            alignItems="flex-end"
-            justifyContent="space-between"
-            columnGap="1rem"
-          >
+          <S.WrapperFilters>
             <InputSearch
               name="search"
               label="Pesquisar"
@@ -160,7 +155,7 @@ export default function AppHome({ data }: AppHomeProps) {
               value={politicalParty}
               options={listAllPoliticalParties}
             />
-          </Box>
+          </S.WrapperFilters>
           {isLoading ? (
             <Box
               fullWidth
@@ -191,14 +186,26 @@ export default function AppHome({ data }: AppHomeProps) {
 }
 
 export async function getServerSideProps() {
-  const {
-    data,
-  }: {
-    data: Parliamentarian[];
-  } = await apiCongress.get("/deputados", {
-    params: {
-      itens: 15,
-    },
-  });
-  return { props: { data } };
+  try {
+    const {
+      data,
+    }: {
+      data: Parliamentarian[];
+    } = await apiCongress.get("/deputados", {
+      params: {
+        itens: 15,
+      },
+    });
+    return { props: { data } };
+  } catch (err) {
+    console.log(err);
+
+    return {
+      props: {
+        data: {
+          dados: [],
+        },
+      },
+    };
+  }
 }

@@ -12,3 +12,22 @@ export const WrapperCards = styled.div`
 
   padding: 1rem 0;
 `;
+
+export const WrapperFilters = styled.div`
+  display: flex;
+  justify-content: space-between;
+  column-gap: 1rem;
+
+  width: 100%;
+
+  @media (max-width: 620px) {
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 621px) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+`;

@@ -9,6 +9,7 @@ import InputSearch from "@components/InputSearch";
 import { Parliamentarian } from "../../types/Parlamentarian";
 import { Pagination } from "@components/Pagination";
 import { Select } from "@components/Select";
+import * as S from "./styles";
 
 export default function Favorites() {
   const { favorites } = useFavorite();
@@ -151,13 +152,7 @@ export default function Favorites() {
           columnGap="1rem"
           flexDirection="column"
         >
-          <Box
-            fullWidth
-            displayFlex
-            alignItems="flex-end"
-            justifyContent="space-between"
-            columnGap="1rem"
-          >
+          <S.WrapperFilters>
             <InputSearch
               name="search"
               label="Pesquisar"
@@ -173,7 +168,7 @@ export default function Favorites() {
               value={politicalParty}
               options={listAllPoliticalParties}
             />
-          </Box>
+          </S.WrapperFilters>
           <Content data={parlamentarians} />
           {parlamentarians.length > 0 && (
             <Pagination

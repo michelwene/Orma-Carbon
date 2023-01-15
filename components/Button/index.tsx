@@ -1,7 +1,7 @@
 import React, { forwardRef, ForwardRefRenderFunction } from "react";
 import * as S from "./styles";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   onClick?: () => void;
   color?: "primary" | "secondary";
@@ -24,6 +24,7 @@ const buttonBase: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     variant,
     type,
     width,
+    ...rest
   },
   ref
 ) => {
@@ -33,6 +34,7 @@ const buttonBase: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
       {...{ color, disabled, fullWidth, loading, variant, width }}
       onClick={onClick}
       type={type}
+      {...rest}
     >
       {loading && <S.IconLoading />}
       {children}

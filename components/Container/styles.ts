@@ -34,4 +34,9 @@ export const Container = styled.div<ContainerProps>`
         return "0";
     }
   }};
+
+  @media (max-width: 1024px) {
+    width: 100%;
+    padding: 0 16px;
+  }
 `;

@@ -77,7 +77,7 @@ export function Modal({ onClose, data, title, isOpen }: ModalProps) {
             </S.CloseButton>
           </S.ModalHeader>
           <S.ModalContent>
-            <Box displayFlex>
+            <S.WrapperInfo>
               <S.ImagePreview src={data.urlFoto} />
               <Box>
                 <Box>
@@ -97,11 +97,18 @@ export function Modal({ onClose, data, title, isOpen }: ModalProps) {
                   <Text variant="subtitle">{data.siglaUf}</Text>
                 </Box>
               </Box>
-            </Box>
+            </S.WrapperInfo>
             {data.parlamentarianType === "Senador" && (
               <Box margin="1rem 0 0 0">
                 <Text variant="caption">Site:</Text>
-                <Link href={data.uri} target="_blank" rel="noreferrer">
+                <Link
+                  href={data.uri}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    wordBreak: "break-all",
+                  }}
+                >
                   {data.uri}
                 </Link>
               </Box>
@@ -113,23 +120,19 @@ export function Modal({ onClose, data, title, isOpen }: ModalProps) {
                     <Loader />
                   </Box>
                 ) : (
-                  <Box margin="1rem 0 0 0">
+                  <Box margin="1rem 0 0 0" flexDirection="column" displayFlex>
                     <Text variant="caption">Despesas:</Text>
-                    <Box
-                      displayFlex
-                      flexDirection="column"
-                      rowGap="1rem"
-                      margin="1rem 0 0 0"
-                    >
+                    <S.WrapperExpenses>
                       {expenses && expenses.length > 0 ? (
                         expenses.map((item, index) => (
-                          <Box
-                            key={item.documentValue + index}
-                            displayFlex
-                            alignItems="center"
-                            justifyContent="space-between"
-                          >
-                            <Box>
+                          <>
+                            <Box
+                              displayFlex
+                              flexDirection="column"
+                              justifyContent="space-between"
+                              key={index}
+                              height="initial"
+                            >
                               <Box>
                                 <Text variant="caption">Data:</Text>
                                 <Text variant="subtitle">
@@ -191,14 +194,15 @@ export function Modal({ onClose, data, title, isOpen }: ModalProps) {
                                 </Text>
                               </Box>
                             </Box>
-                          </Box>
+                            {index !== expenses.length - 1 && <S.Divider />}
+                          </>
                         ))
                       ) : (
                         <Text variant="subtitle">
                           Nenhuma despesa encontrada
                         </Text>
                       )}
-                    </Box>
+                    </S.WrapperExpenses>
                   </Box>
                 )}
               </>

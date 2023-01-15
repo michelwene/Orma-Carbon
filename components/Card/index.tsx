@@ -38,9 +38,14 @@ export function Card({ data }: CardProps) {
   return (
     <>
       <S.CardContainer>
-        <S.CardLogo src={data.urlFoto} />
+        <S.CardHeader>
+          <S.CardLogo src={data.urlFoto} />
+          <S.IconButtonFavorite type="button" onClick={() => onClickFavorite()}>
+            <S.Icon />
+          </S.IconButtonFavorite>
+        </S.CardHeader>
         <S.CardInfo>
-          <Box displayFlex columnGap="1rem">
+          <S.WrapperInfo>
             <Box width="200px">
               <Box>
                 <Text variant="caption">Nome:</Text>
@@ -54,34 +59,43 @@ export function Card({ data }: CardProps) {
             <Box width="200px">
               <Box>
                 <Text variant="caption">Email:</Text>
-                <Text variant="subtitle">{data.email || " - "}</Text>
+                <Text
+                  variant="subtitle"
+                  style={{
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {data.email || " - "}
+                </Text>
               </Box>
               <Box margin="1rem 0 0 0">
                 <Text variant="caption">Sigla UF:</Text>
                 <Text variant="subtitle">{data.siglaUf}</Text>
               </Box>
             </Box>
-          </Box>
-          <Box>
-            <Box
-              style={{
-                textAlign: "right",
-              }}
-            >
+          </S.WrapperInfo>
+          <S.WrapperFavorite>
+            <Box>
               <Text variant="caption">Detalhes:</Text>
               <S.MoreInfo onClick={handleOpenModal}>Ver mais...</S.MoreInfo>
             </Box>
-            <Box margin="1rem 0 0 0">
+            <S.ContainerButtonFavorite>
               <Button
                 type="button"
                 variant="outlined"
                 onClick={() => onClickFavorite()}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  columnGap: "1rem",
+                }}
               >
                 {isFavorited ? "Desfavoritar" : "Favoritar"}
                 {!isFavorited && <S.Icon />}
               </Button>
-            </Box>
-          </Box>
+            </S.ContainerButtonFavorite>
+          </S.WrapperFavorite>
         </S.CardInfo>
       </S.CardContainer>
       {parlamentarian && (

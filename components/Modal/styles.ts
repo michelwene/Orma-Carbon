@@ -11,12 +11,13 @@ interface ModalProps {
 
 export const Container = styled.div`
   position: fixed;
-  top: 25%;
-  left: 25%;
+  top: 0;
+  left: 0;
+
   z-index: 10;
 
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
 
   justify-content: center;
   align-items: center;
@@ -31,6 +32,21 @@ export const Wrapper = styled.div`
 
   min-width: 50vw;
   min-height: 50vh;
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  position: relative;
+  z-index: 20;
+
+  @media (max-width: 620px) {
+    min-width: 90vw;
+  }
+`;
+
+export const WrapperInfo = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export const ModalHeader = styled.div`
@@ -56,6 +72,10 @@ export const ImagePreview = styled.div<imageProps>`
   width: 200px;
   height: 200px;
   background: url(${(props) => props.src}) center / contain no-repeat;
+
+  @media (max-width: 620px) {
+    width: 100%;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -95,4 +115,25 @@ export const Backdrop = styled.div`
   z-index: 9;
 
   display: ${({ isOpen }: ModalProps) => (isOpen ? "block" : "none")};
+`;
+
+export const WrapperExpenses = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  column-gap: 1rem;
+  row-gap: 1rem;
+
+  margin-top: 1rem;
+
+  @media (max-width: 620px) {
+    flex-direction: column;
+  }
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.background.shape};
+  margin: 1rem 0;
 `;

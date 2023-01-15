@@ -15,9 +15,9 @@ export const Button = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
 
-  padding: 0.5rem 2rem;
+  padding: 0.2rem 1rem;
   border: none;
-  border-radius: 18px;
+  border-radius: 10px;
 
   font-size: ${({ theme }) => theme.size.regular};
   font-family: ${({ theme }) => theme.fonts.primary};
