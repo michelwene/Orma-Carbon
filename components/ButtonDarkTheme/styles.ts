@@ -3,7 +3,7 @@ import { BsSun, BsMoon } from "react-icons/bs";
 
 export const ButtonDarkTheme = styled.button`
   position: fixed;
-  top: 1rem;
+  top: 3rem;
   right: 1rem;
   width: 3rem;
   height: 3rem;
