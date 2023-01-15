@@ -1,11 +1,5 @@
 import * as S from "./styles";
-
-interface SelectProps {
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  value: string;
-  options: string[];
-  label: string;
-}
+import { SelectProps } from "./types";
 
 export function Select({ onChange, value, options, label }: SelectProps) {
   return (

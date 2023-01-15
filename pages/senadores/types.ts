@@ -1,4 +1,4 @@
-export type Senator = {
+type Senator = {
   IdentificacaoParlamentar: {
     CodigoParlamentar: string;
     EmailParlamentar: string;

@@ -4,11 +4,7 @@ import { Logo } from "@components/Logo";
 import * as S from "./styles";
 import { ActiveLink } from "@components/ActiveLink";
 import { ButtonDarkTheme } from "@components/ButtonDarkTheme";
-
-interface HeaderProps {
-  theme: string;
-  toggleTheme: () => void;
-}
+import { HeaderProps } from "./types";
 
 export function Header({ theme, toggleTheme }: HeaderProps) {
   return (

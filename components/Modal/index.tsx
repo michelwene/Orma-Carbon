@@ -1,27 +1,17 @@
 import { Box } from "@components/Box";
 import { Link } from "@components/Link/styles";
 import { Text } from "@components/Text/styles";
-import {
-  ParlamentarianExpenses,
-  Parliamentarian,
-} from "../../types/Parlamentarian";
+import { ParlamentarianExpenses } from "../../types/Parlamentarian";
 import * as S from "./styles";
 import { useCallback, useEffect, useState } from "react";
 import { apiCongress } from "@services/api";
 import { Loader } from "@components/Loader/styles";
 import { formatCurrency } from "@utils/formatterCurrency";
-
-interface ModalProps {
-  onClose: () => void;
-  data: Parliamentarian;
-  title: string;
-  isOpen: boolean;
-}
+import { ModalProps } from "./types";
 
 export function Modal({ onClose, data, title, isOpen }: ModalProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [expenses, setExpenses] = useState<ParlamentarianExpenses[]>([]);
-  // console.log(data);
 
   useEffect(() => {
     if (isOpen) {

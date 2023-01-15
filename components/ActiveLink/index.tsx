@@ -1,11 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
 import * as S from "./styles";
+import { ActiveLinkProps } from "./types";
 
-interface ActiveLinkProps {
-  children: React.ReactNode;
-  href: string;
-}
 export function ActiveLink({ children, href }: ActiveLinkProps) {
   const router = useRouter();
   const style = {

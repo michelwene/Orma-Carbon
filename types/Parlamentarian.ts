@@ -21,3 +21,7 @@ export type ParlamentarianExpenses = {
   documentValue: number;
   netValue: number;
 };
+
+export interface ContentProps {
+  data: Parliamentarian[];
+}

@@ -12,9 +12,6 @@ import { Loader } from "@components/Loader";
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState("light");
 
-  const toggleTheme = () => {
-    theme == "light" ? setTheme("dark") : setTheme("light");
-  };
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -33,6 +30,10 @@ export default function App({ Component, pageProps }: AppProps) {
       document.body.style.overflow = "unset";
     });
   }, [Router]);
+
+  const toggleTheme = () => {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  };
 
   return (
     <>
@@ -61,14 +62,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
         <GlobalStyle />
         <FavoritesProvider>
-          <Layout
-            theme={theme}
-            toggleTheme={() =>
-              setTheme((prev) => {
-                return prev === "light" ? "dark" : "light";
-              })
-            }
-          >
+          <Layout theme={theme} toggleTheme={() => toggleTheme()}>
             <Component {...pageProps} />
           </Layout>
         </FavoritesProvider>

@@ -6,10 +6,7 @@ import { useState } from "react";
 import { useFavorite } from "../../context/FavoritesContext";
 import { Parliamentarian } from "../../types/Parlamentarian";
 import * as S from "./styles";
-
-interface CardProps {
-  data: Parliamentarian;
-}
+import { CardProps } from "./types";
 
 export function Card({ data }: CardProps) {
   const [isOpenModal, setIsOpenModal] = useState(false);

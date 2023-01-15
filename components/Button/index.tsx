@@ -1,17 +1,6 @@
 import React, { forwardRef, ForwardRefRenderFunction } from "react";
 import * as S from "./styles";
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode;
-  onClick?: () => void;
-  color?: "primary" | "secondary";
-  variant?: "contained" | "outlined";
-  fullWidth?: boolean;
-  disabled?: boolean;
-  loading?: boolean;
-  type: "button" | "submit" | "reset";
-  width?: string;
-}
+import { ButtonProps } from "./types";
 
 const buttonBase: ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   {

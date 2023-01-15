@@ -1,11 +1,6 @@
 import { Header } from "@components/Header";
 import * as S from "./styles";
-
-interface LayoutProps {
-  children: React.ReactNode;
-  theme: string;
-  toggleTheme: () => void;
-}
+import { LayoutProps } from "./types";
 
 export function Layout({ children, theme, toggleTheme }: LayoutProps) {
   return (

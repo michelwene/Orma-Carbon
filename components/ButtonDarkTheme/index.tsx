@@ -1,9 +1,5 @@
 import * as S from "./styles";
-
-interface ButtonDarkThemeProps {
-  onClick: () => void;
-  theme: string;
-}
+import { ButtonDarkThemeProps } from "./types";
 
 export function ButtonDarkTheme({ theme, onClick }: ButtonDarkThemeProps) {
   return (

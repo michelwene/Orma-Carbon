@@ -3,14 +3,10 @@ import { Card } from "@components/Card";
 import { Container } from "@components/Container";
 import { EmptyMessage } from "@components/EmptyMessage";
 import { useFavorite } from "../../context/FavoritesContext";
-import { Parliamentarian } from "../../types/Parlamentarian";
+import { ContentProps, Parliamentarian } from "../../types/Parlamentarian";
 import * as S from "./styles";
 
-interface HomeProps {
-  data: Parliamentarian[];
-}
-
-export function Content({ data }: HomeProps) {
+export function Content({ data }: ContentProps) {
   const { favorites } = useFavorite();
   return (
     <Box

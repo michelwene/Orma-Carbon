@@ -1,12 +1,5 @@
 import * as S from "./styles";
-
-interface PaginationProps {
-  nextPage: () => void;
-  previousPage: () => void;
-  total?: number;
-  page?: number;
-  buttonNextDisabled?: boolean;
-}
+import { PaginationProps } from "./types";
 
 export function Pagination({
   nextPage,

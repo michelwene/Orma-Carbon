@@ -1,16 +1,7 @@
 import { Box } from "@components/Box";
 import React, { forwardRef, ForwardRefRenderFunction } from "react";
 import * as S from "./styles";
-
-interface InputProps {
-  name: string;
-  label?: string;
-  placeholder?: string;
-  type?: string;
-  fullWidth?: boolean;
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { InputProps } from "./types";
 
 const InputSearch: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   {

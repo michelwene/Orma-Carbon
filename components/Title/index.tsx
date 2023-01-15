@@ -1,8 +1,5 @@
 import * as S from "./styles";
-
-interface TitleProps {
-  title: string;
-}
+import { TitleProps } from "./types";
 
 export function Title({ title }: TitleProps) {
   return <S.Title>{title}</S.Title>;

@@ -1,8 +1,5 @@
 import * as S from "./styles";
-
-interface EmptyMessageProps {
-  text: string;
-}
+import { EmptyMessageProps } from "./types";
 
 export function EmptyMessage({ text }: EmptyMessageProps) {
   return (
