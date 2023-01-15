@@ -20,22 +20,21 @@ interface ContentProps {
 
 export function Content({ data }: ContentProps) {
   return (
-    <Container maxWidth="md">
-      <Box
-        margin="2rem 0 0 0"
-        displayFlex
-        alignItems="center"
-        justifyContent="center"
-        columnGap="1rem"
-      >
-        <S.WrapperCards>
-          {data && data.length > 0 ? (
-            data.map((item) => <Card key={item.id} data={item} />)
-          ) : (
-            <EmptyMessage text="Não há nenhum parlamentar favoritado" />
-          )}
-        </S.WrapperCards>
-      </Box>
-    </Container>
+    <Box
+      margin="2rem 0 0 0"
+      displayFlex
+      alignItems="center"
+      justifyContent="center"
+      columnGap="1rem"
+      fullWidth
+    >
+      <S.WrapperCards>
+        {data && data.length > 0 ? (
+          data.map((item) => <Card key={item.id} data={item} />)
+        ) : (
+          <EmptyMessage text="Não há nenhum parlamentar favoritado" />
+        )}
+      </S.WrapperCards>
+    </Box>
   );
 }

@@ -6,21 +6,34 @@ import InputSearch from "@components/InputSearch";
 import { apiSenate } from "@services/api";
 import Head from "next/head";
 import { Content } from "./Content";
-import { Senator, SenatorProps } from "./types";
+import { SenatorProps } from "./types";
+import { useState, useEffect, useMemo } from "react";
+import useDebounce from "@hooks/useDebounce";
 
 export default function Senators({ data }: SenatorProps) {
-  const dataFormatted =
-    data.ListaParlamentarEmExercicio.Parlamentares.Parlamentar.map((item) => ({
-      email: item.IdentificacaoParlamentar.EmailParlamentar,
-      id: item.IdentificacaoParlamentar.CodigoParlamentar,
-      idLegislatura: item.IdentificacaoParlamentar.CodigoPublicoNaLegAtual,
-      nome: item.IdentificacaoParlamentar.NomeCompletoParlamentar,
-      siglaPartido: item.IdentificacaoParlamentar.SiglaPartidoParlamentar,
-      siglaUf: item.IdentificacaoParlamentar.UfParlamentar,
-      uri: item.IdentificacaoParlamentar.UrlPaginaParlamentar,
-      urlFoto: item.IdentificacaoParlamentar.UrlFotoParlamentar,
-      parlamentarianType: "Senador",
-    }));
+  const [keyword, setKeyword] = useState("");
+  const debouncedSearchTerm = useDebounce(keyword, 500);
+
+  const dataFormatted = useMemo(() => {
+    return data.ListaParlamentarEmExercicio.Parlamentares.Parlamentar.map(
+      (item) => ({
+        email: item.IdentificacaoParlamentar.EmailParlamentar,
+        id: item.IdentificacaoParlamentar.CodigoParlamentar,
+        idLegislatura: item.IdentificacaoParlamentar.CodigoPublicoNaLegAtual,
+        nome: item.IdentificacaoParlamentar.NomeCompletoParlamentar,
+        siglaPartido: item.IdentificacaoParlamentar.SiglaPartidoParlamentar,
+        siglaUf: item.IdentificacaoParlamentar.UfParlamentar,
+        uri: item.IdentificacaoParlamentar.UrlPaginaParlamentar,
+        urlFoto: item.IdentificacaoParlamentar.UrlFotoParlamentar,
+        parlamentarianType: "Senador",
+      })
+    );
+  }, [data]);
+
+  const filteredValue = dataFormatted.filter((item) => {
+    return item.nome.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
+  });
+
   return (
     <>
       <Head>
@@ -38,11 +51,13 @@ export default function Senators({ data }: SenatorProps) {
           <InputSearch
             name="search"
             label="Pesquisar"
-            placeholder="Digite o nome do Senador"
+            placeholder="Digite o nome do senador"
             type="text"
             fullWidth
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
           />
-          <Content data={dataFormatted} />
+          <Content data={keyword.length > 0 ? filteredValue : dataFormatted} />
         </Box>
       </Container>
     </>

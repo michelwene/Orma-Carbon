@@ -8,10 +8,20 @@ interface InputProps {
   placeholder?: string;
   type?: string;
   fullWidth?: boolean;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputSearch: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  { name, label, placeholder, type = "text", fullWidth = false },
+  {
+    name,
+    label,
+    placeholder,
+    type = "text",
+    fullWidth = false,
+    value,
+    onChange,
+  },
   ref
 ) => {
   return (
@@ -23,6 +33,9 @@ const InputSearch: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         placeholder={placeholder}
         type={type}
         fullWidth={fullWidth}
+        value={value}
+        onChange={onChange}
+        autoComplete="off"
       />
     </Box>
   );

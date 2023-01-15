@@ -41,7 +41,7 @@ export function Content({ data }: ContentProps) {
             return <Card key={item.id} data={item} />;
           })
         ) : (
-          <EmptyMessage text="Não foi encontrado nenhum deputado" />
+          <EmptyMessage text="Não foi encontrado nenhum senador" />
         )}
       </S.WrapperCards>
     </Box>

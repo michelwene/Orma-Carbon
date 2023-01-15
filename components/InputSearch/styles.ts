@@ -13,7 +13,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   padding: 1rem 0.5rem;
-  color: ${({ theme }) => theme.text.primary};
+  color: ${({ theme }) => theme.text.secondary};
   border: none;
 
   min-width: 300px;
