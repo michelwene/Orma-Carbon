@@ -27,8 +27,6 @@ export function Modal({ onClose, data, title, isOpen }: ModalProps) {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       return;
-    } else {
-      document.body.style.overflow = "unset";
     }
   }, [isOpen]);
 
@@ -68,7 +66,6 @@ export function Modal({ onClose, data, title, isOpen }: ModalProps) {
     }
   }, []);
 
-  console.log(expenses);
   return (
     <>
       <S.Container isOpen={isOpen}>

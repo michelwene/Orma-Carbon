@@ -15,14 +15,17 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     Router.events.on("routeChangeStart", (url) => {
       setIsLoading(true);
+      document.body.style.overflow = "hidden";
     });
 
     Router.events.on("routeChangeComplete", (url) => {
       setIsLoading(false);
+      document.body.style.overflow = "unset";
     });
 
     Router.events.on("routeChangeError", (url) => {
       setIsLoading(false);
+      document.body.style.overflow = "unset";
     });
   }, [Router]);
 

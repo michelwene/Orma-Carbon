@@ -3,37 +3,127 @@ import { apiCongress } from "@services/api";
 import { AppHomeProps } from "./types";
 import { Content } from "./Content";
 import { Parliamentarian } from "../../types/Parlamentarian";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import useDebounce from "@hooks/useDebounce";
 import { Container } from "@components/Container";
 import { Box } from "@components/Box";
 import InputSearch from "@components/InputSearch";
+import { Pagination } from "@components/Pagination";
+import { Loader } from "@components/Loader/styles";
+import { Select } from "@components/Select";
 
 export default function AppHome({ data }: AppHomeProps) {
   const [keyword, setKeyword] = useState("");
   const debouncedSearchTerm = useDebounce(keyword, 500);
+  const [parlamentarians, setParlamentarians] = useState<Parliamentarian[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [politicalParty, setPoliticalParty] = useState("");
 
-  const dataFormatted = useMemo(() => {
+  const dataFormattedServerSide = useMemo(() => {
     return data.dados.map((item) => ({
       ...item,
       parlamentarianType: "Deputado",
     }));
   }, [data]);
 
-  const filteredValue = dataFormatted.filter((item) => {
+  useEffect(() => {
+    setParlamentarians(dataFormattedServerSide);
+  }, [data]);
+
+  async function handleFilterByPoliticalParty(value: string) {
+    try {
+      setIsLoading(true);
+      setPoliticalParty(value);
+      const { data } = await apiCongress.get("/deputados", {
+        params: {
+          itens: 15,
+          pagina: 1,
+          siglaPartido: value,
+          nome: keyword,
+        },
+      });
+      const dataFormatted = data.dados.map((item) => ({
+        ...item,
+        parlamentarianType: "Deputado",
+      }));
+      const totalPages = data.links
+        .find((item) => item.rel === "last")
+        ?.href.split("pagina=")[1]
+        .split("&")[0];
+      setTotalPages(Number(totalPages));
+      setParlamentarians(dataFormatted);
+      setPage(1);
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function handleSwitchPage(type: "next" | "previous") {
+    try {
+      setIsLoading(true);
+      const { data } = await apiCongress.get("/deputados", {
+        params: {
+          itens: 15,
+          pagina: type === "next" ? page + 1 : page - 1,
+          siglaPartido: politicalParty,
+          nome: keyword,
+        },
+      });
+      const dataFormatted = data.dados.map((item) => ({
+        ...item,
+        parlamentarianType: "Deputado",
+      }));
+
+      const totalPages = data.links
+        .find((item) => item.rel === "last")
+        ?.href.split("pagina=")[1]
+        .split("&")[0];
+      setTotalPages(Number(totalPages));
+      setParlamentarians(dataFormatted);
+      setPage((prev) => (type === "next" ? prev + 1 : prev - 1));
+    } catch (err) {
+      setIsLoading(false);
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    setParlamentarians(dataFormattedServerSide);
+  }, []);
+
+  useEffect(() => {
+    handleFilterByPoliticalParty(politicalParty);
+  }, [debouncedSearchTerm]);
+
+  const filteredValue = parlamentarians.filter((item) => {
     return item.nome.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
   });
 
-  async function handleSwitchPage(link: string) {
-    const { data } = await apiCongress.get(link, {
-      params: {
-        itens: 15,
-      },
-    });
-    console.log(data);
-  }
+  const listAllPoliticalParties = dataFormattedServerSide.reduce(
+    (acc, item) => {
+      if (!acc.includes(item.siglaPartido)) {
+        acc.push(item.siglaPartido);
+      }
+      return acc;
+    },
+    []
+  );
 
-  console.log(data);
+  const totalPagesPagination =
+    keyword.length > 0 || politicalParty.length > 0
+      ? totalPages
+      : data.links
+          .find((item) => item.rel === "last")
+          ?.href.split("pagina=")[1]
+          .split("&")[0];
+
   return (
     <>
       <Head>
@@ -48,16 +138,52 @@ export default function AppHome({ data }: AppHomeProps) {
           columnGap="1rem"
           flexDirection="column"
         >
-          <InputSearch
-            name="search"
-            label="Pesquisar"
-            placeholder="Digite o nome do deputado"
-            type="text"
+          <Box
             fullWidth
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-          <Content data={keyword.length > 0 ? filteredValue : dataFormatted} />
+            displayFlex
+            alignItems="flex-end"
+            justifyContent="space-between"
+            columnGap="1rem"
+          >
+            <InputSearch
+              name="search"
+              label="Pesquisar"
+              placeholder="Digite o nome do deputado"
+              type="text"
+              fullWidth
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+            />
+            <Select
+              label="Selecione um partido"
+              onChange={(e) => handleFilterByPoliticalParty(e.target.value)}
+              value={politicalParty}
+              options={listAllPoliticalParties}
+            />
+          </Box>
+          {isLoading ? (
+            <Box
+              fullWidth
+              displayFlex
+              alignItems="center"
+              justifyContent="center"
+              margin="2rem 0 0 0"
+            >
+              <Loader />
+            </Box>
+          ) : (
+            <Content
+              data={keyword.length > 0 ? filteredValue : parlamentarians}
+            />
+          )}
+          {parlamentarians.length > 0 && (
+            <Pagination
+              nextPage={() => handleSwitchPage("next")}
+              previousPage={() => handleSwitchPage("previous")}
+              page={page}
+              buttonNextDisabled={page === totalPagesPagination}
+            />
+          )}
         </Box>
       </Container>
     </>

@@ -29,6 +29,8 @@ export function Card({ data }: CardProps) {
 
   function onRequestCloseModal() {
     setIsOpenModal(false);
+    setParlamentarian(null);
+    document.body.style.overflow = "unset";
   }
 
   const isFavorited = favorites.some((item) => item.id === data.id);
