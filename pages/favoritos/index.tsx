@@ -136,7 +136,7 @@ export default function Favorites() {
       acc.push(item.siglaPartido);
     }
     return acc;
-  }, []);
+  }, [] as string[]);
 
   return (
     <>

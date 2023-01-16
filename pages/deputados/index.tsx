@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { apiCongress } from "@services/api";
-import { AppHomeProps } from "./types";
+import { AppHomeProps, Link } from "./types";
 import { Content } from "./Content";
 import { Parliamentarian } from "../../types/Parlamentarian";
 import { useState, useMemo, useEffect } from "react";
@@ -45,12 +45,12 @@ export default function AppHome({ data }: AppHomeProps) {
           nome: keyword,
         },
       });
-      const dataFormatted = data.dados.map((item) => ({
+      const dataFormatted = data.dados.map((item: Parliamentarian) => ({
         ...item,
         parlamentarianType: "Deputado",
       }));
       const totalPages = data.links
-        .find((item) => item.rel === "last")
+        .find((item: Link) => item.rel === "last")
         ?.href.split("pagina=")[1]
         .split("&")[0];
       setTotalPages(Number(totalPages));
@@ -75,13 +75,13 @@ export default function AppHome({ data }: AppHomeProps) {
           nome: keyword,
         },
       });
-      const dataFormatted = data.dados.map((item) => ({
+      const dataFormatted = data.dados.map((item: Parliamentarian) => ({
         ...item,
         parlamentarianType: "Deputado",
       }));
 
       const totalPages = data.links
-        .find((item) => item.rel === "last")
+        .find((item: Link) => item.rel === "last")
         ?.href.split("pagina=")[1]
         .split("&")[0];
       setTotalPages(Number(totalPages));
@@ -114,7 +114,7 @@ export default function AppHome({ data }: AppHomeProps) {
       }
       return acc;
     },
-    []
+    [] as string[]
   );
 
   const totalPagesPagination =
