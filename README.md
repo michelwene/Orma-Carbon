@@ -44,4 +44,4 @@ Se você quiser entrar em contato comigo para me fazer alguma pergunta, eu estar
 
 ## 🚀 Deploy
 
-### [Deploy Netlify](https://orma-carbon-michelwene.netlify.app/)
+### [Deploy Vercel](https://orma-carbon.vercel.app/deputados)
