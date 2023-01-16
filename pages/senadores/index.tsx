@@ -160,7 +160,7 @@ export default function Senators({ data }: SenatorProps) {
       }
       return acc;
     },
-    []
+    [] as string[]
   );
 
   return (

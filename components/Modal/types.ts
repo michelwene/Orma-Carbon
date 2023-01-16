@@ -6,3 +6,14 @@ export interface ModalProps {
   title: string;
   isOpen: boolean;
 }
+
+export type ExpensesServerData = {
+  ano: number;
+  mes: number;
+  numDocumento: string;
+  dataDocumento: string;
+  nomeFornecedor: string;
+  tipoDocumento: string;
+  valorDocumento: number;
+  valorLiquido: number;
+};

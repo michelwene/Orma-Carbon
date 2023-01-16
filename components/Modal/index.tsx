@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import { apiCongress } from "@services/api";
 import { Loader } from "@components/Loader/styles";
 import { formatCurrency } from "@utils/formatterCurrency";
-import { ModalProps } from "./types";
+import { ExpensesServerData, ModalProps } from "./types";
 
 export function Modal({ onClose, data, title, isOpen }: ModalProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,7 @@ export function Modal({ onClose, data, title, isOpen }: ModalProps) {
           mes: new Date().getMonth() + 1,
         },
       });
-      return response.data.dados.map((item) => ({
+      return response.data.dados.map((item: ExpensesServerData) => ({
         year: item.ano,
         month: item.mes,
         documentNumber: item.numDocumento,
