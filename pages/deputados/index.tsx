@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { apiCongress } from "@services/api";
-import { AppHomeProps, Link } from "./types";
-import { Content } from "./Content";
+import { AppHomeProps, Link } from "@components/Deputies/types";
+import { Content } from "../../components/Deputies/Content";
 import { Parliamentarian } from "../../types/Parlamentarian";
 import { useState, useMemo, useEffect } from "react";
 import useDebounce from "@hooks/useDebounce";
@@ -11,7 +11,7 @@ import InputSearch from "@components/InputSearch";
 import { Pagination } from "@components/Pagination";
 import { Loader } from "@components/Loader/styles";
 import { Select } from "@components/Select";
-import * as S from "./styles";
+import * as S from "@components/Deputies/styles";
 
 export default function AppHome({ data }: AppHomeProps) {
   const [keyword, setKeyword] = useState("");
