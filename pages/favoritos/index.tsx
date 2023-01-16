@@ -2,14 +2,14 @@ import { Box } from "@components/Box";
 import { Container } from "@components/Container";
 import Head from "next/head";
 import { useFavorite } from "../../context/FavoritesContext";
-import { Content } from "./Content";
+import { Content } from "../../components/Favorites/Content";
 import { useState, useEffect } from "react";
 import useDebounce from "@hooks/useDebounce";
 import InputSearch from "@components/InputSearch";
 import { Parliamentarian } from "../../types/Parlamentarian";
 import { Pagination } from "@components/Pagination";
 import { Select } from "@components/Select";
-import * as S from "./styles";
+import * as S from "../../components/Favorites/styles";
 
 export default function Favorites() {
   const { favorites } = useFavorite();

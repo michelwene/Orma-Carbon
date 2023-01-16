@@ -3,13 +3,13 @@ import { Container } from "@components/Container";
 import InputSearch from "@components/InputSearch";
 import { apiSenate } from "@services/api";
 import Head from "next/head";
-import { Content } from "./Content";
-import { SenatorProps } from "./types";
+import { Content } from "../../components/Senator/Content";
+import { SenatorProps } from "@components/Senator/types";
 import { useState, useEffect, useMemo } from "react";
 import useDebounce from "@hooks/useDebounce";
 import { Parliamentarian } from "../../types/Parlamentarian";
 import { Pagination } from "@components/Pagination";
-import * as S from "./styles";
+import * as S from "@components/Senator/styles";
 import { Select } from "@components/Select";
 
 export default function Senators({ data }: SenatorProps) {
