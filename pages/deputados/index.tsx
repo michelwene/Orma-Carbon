@@ -118,12 +118,14 @@ export default function AppHome({ data }: AppHomeProps) {
   );
 
   const totalPagesPagination =
-    keyword.length > 0 || politicalParty.length > 0
-      ? totalPages
-      : data.links
-          .find((item) => item.rel === "last")
-          ?.href.split("pagina=")[1]
-          .split("&")[0];
+    data && data.dados.length > 0
+      ? keyword.length > 0 || politicalParty.length > 0
+        ? totalPages
+        : data.links
+            .find((item) => item.rel === "last")
+            ?.href.split("pagina=")[1]
+            .split("&")[0]
+      : 0;
 
   return (
     <>
